@@ -12,12 +12,16 @@
   },
   "author": "",
   "license": "ISC",
+  "bin": {
+    "md-links": "index.js"
+  },
   "bugs": {
     "url": "https://github.com/esmerivero/cdmx-2018-01-FE-markdown/issues"
   },
   "homepage": "https://github.com/esmerivero/cdmx-2018-01-FE-markdown#readme",
   "dependencies": {
     "jsdom": "^12.0.0",
-    "markdown-it": "^8.4.2"
+    "markdown-it": "^8.4.2",
+    "node-fetch": "^2.2.0"
   }
 }

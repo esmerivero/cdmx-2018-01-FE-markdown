@@ -313,6 +313,7 @@ si tienes dudas existenciales con respecto a estas decisiones. No existe una
 - [how-to-npm](https://github.com/workshopper/how-to-npm)
 - [promise-it-wont-hurt](https://github.com/stevekane/promise-it-wont-hurt)
 
+
 ### Otros recursos
 
 - [Acerca de Node.js - Documentación oficial](https://nodejs.org/es/about/)
@@ -394,3 +395,5 @@ Que sea instalable directamente desde el repositorio de Github
 - [ ] Pruebas unitarias cubren un mínimo del 70% de statements, functions,
       lines, y branches.
 - [ ] Pasa tests (y linters) (`npm test`).
+
+- [ejemplo de esme](https://esmerivero.github.io/api-randomuser/src/)
