@@ -9,7 +9,7 @@ const fetch = require('node-fetch');
 
 const convertFile = (file) =>{
     let arr = [];
-    const str = fs.readFileSync(file, 'utf8');  // Aquí se lee el archivo    
+    const str = fs.readFileSync(file, 'utf8');  // Aquí se lee el archivo
     const result = md.render(str); // Se convierte a formato html
     const dom = new JSDOM(result); // Simula crear elementos del dom
     const labels = dom.window.document.querySelectorAll('a'); // Busca todos las etiquetas "a"
@@ -20,52 +20,55 @@ const convertFile = (file) =>{
         };
 
         arr.push(obj);
-        /*fetch(content.href)
-        .then((response) => {
-            response.status     //=> number 100–599
-            response.statusText //=> String
-            console.log(content.href, content.textContent, response.status, response.statusText);
-            
-            // return response.text()
-        }, function(error) {
-            error.message //=> String
-            });*/
-    }); 
-     return arr;
-}
+    });
 
-const doFetch = (url) =>{
-    fetch(url)
-    .then((response) => {        
-        return response.status
-    })
-    .catch((error) =>{
-        return error
-    })
+    return arr;
 }
 
 const validate = (array) =>{
     array.map((content) =>{
-        for(const j in content){
-            if(j === 'link'){
-                fetch(content[j])
+        for(const property in content){
+            if(property === 'link'){
+                fetch(content[property])
                 .then((response) => {
                     content["status"] = response.status;
+                    content['text status'] = response.statusText;
                     console.log(content);
-                }).catch((error) => {
+                    return content;
+                })
+                .catch((error) => {
                     return error;
                 });
             }
           }
-          
-          
     })
 }
 
+const stats = (array) =>{
+    array.map((content) =>{
+        for(const property in content){
+            if(property === 'link'){
+                fetch(content[property])
+                .then((response) => {
+                    if(response.status === 200){
+                      console.log();
 
+                    }
+                    return content;
+                })
+                .catch((error) => {
+                    return error;
+                });
+            }
+          }
+    })
+}
 
 const mdLinks = (file) => {
+    stats(convertFile(file));
     validate(convertFile(file));
+    // minimist
+    // filter includes
 }
 
 module.exports = {
