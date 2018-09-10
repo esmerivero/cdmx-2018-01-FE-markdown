@@ -26,12 +26,12 @@ const convertFile = (file) =>{
 }
 
 const validate = (array) =>{
-  array.map((content) =>{
-    for(const property in content){
-      if(property === 'link'){
+  array.map((content) =>{ // Extrae la info del arreglo
+    for(const property in content){ // lee cada objeto
+      if(property === 'link'){ // Si la propiedad conincide con link se realiza el fetch
         fetch(content[property])
         .then((response) => {
-            content['status'] = response.status;
+            content['status'] = response.status; // Agrega al objeto status y el texto del status
             content['text status'] = response.statusText;
             console.log(content);
             return content;
@@ -50,19 +50,16 @@ const stats = (array) =>{
     for(const property in content){
       const element = content[property];
       if(property === 'link'){
-        arrayForLinks.push(element);
+        arrayForLinks.push(element); // Si la propiedad coincide con 'link' lo agregará en un array
       }
     }
   })
 
-  let count = 1;
-  let linkRep=0;
+  let linkRep=0; // Links repetidos
   let unique=arrayForLinks.length;
-  for (let i = 0; i < arrayForLinks.length; i = i + count) {
-    count = 1;
-    for (let j = i + 1; j < arrayForLinks.length; j++) {
-      if (arrayForLinks[i] === arrayForLinks[j]){
-        count++;
+  for (let i = 0; i < arrayForLinks.length; i++) {
+    for (let j = i + 1; j < arrayForLinks.length; j++) { // Se recorre cada link y se comparan
+      if (arrayForLinks[i] === arrayForLinks[j]){ // Si son iguales linkRepetido se incrementará
         linkRep++;
       }
     }
