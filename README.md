@@ -397,3 +397,7 @@ Que sea instalable directamente desde el repositorio de Github
 - [ ] Pasa tests (y linters) (`npm test`).
 
 - [ejemplo de esme](https://esmerivero.github.io/api-randomuser/src/)
+- [ejemplo de esme](https://esmerivero.github.io/api-randomuser/src/)
+- [ejemplo de esme](https://esmerivero.github.io/api-randomuser/src/)
+- [ejemplo de esme](https://esmerivero.github.io/api-randomuser/src/)
+- [ejemplo de esme](https://esmerivero.github.io/api-randomuser/src/)
