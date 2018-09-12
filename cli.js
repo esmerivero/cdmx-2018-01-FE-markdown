@@ -26,22 +26,42 @@ const convertFile = (file) =>{
 }
 
 const validate = (array) =>{
-  array.map((content) =>{ // Extrae la info del arreglo
-    for(const property in content){ // lee cada objeto
-      if(property === 'link'){ // Si la propiedad conincide con link se realiza el fetch
-        fetch(content[property])
-        .then((response) => {
-            content['status'] = response.status; // Agrega al objeto status y el texto del status
-            content['text status'] = response.statusText;
-            console.log(content);
-            return content;
+  const promise = new Promise((resolve, reject) => {
+    if(1+2==4) {
+      return reject('Esto no jala');
+    }
+    else {
+      return resolve (
+        array.map((content) =>{ // Extrae la info del arreglo
+          for(const property in content){ // lee cada objeto
+            if(property === 'link'){ // Si la propiedad conincide con link se realiza el fetch
+              return fetch(content[property]).then((response) => {
+                  content['status'] = response.status; // Agrega al objeto status y el texto del status
+                  content['text status'] = response.statusText;
+                  return (content);
+              })
+              .catch((error) => {
+                  return error;
+              });
+            }
+          }
         })
-        .catch((error) => {
-            return error;
-        });
-      }
+      );
     }
   })
+
+
+  promise
+  .then((response) => {
+    return Promise.all(response)
+  })
+  .then((response) => {
+    console.log(response);
+    return response;
+  })
+  .catch((err) => {
+    console.error('ERROR: ' + err)
+  });
 }
 
 const stats = (array) =>{
@@ -69,10 +89,28 @@ const stats = (array) =>{
 }
 
 const mdLinks = (file) => {
-    stats(convertFile(file));
-    validate(convertFile(file));
+    // stats(convertFile(file));
+    // validate(convertFile(file));
     // minimist
     // filter includes
+
+  const promise = new Promise((resolve, reject) => {
+    if(!file) {
+      return reject('Esto no jala');
+    }
+    else {
+      return resolve (validate(convertFile(file)));
+    }
+  })
+
+
+  promise
+  .then((response) => {
+    return response;
+  })
+  .catch((err) => {
+    console.error('ERROR: ' + err)
+  });
 }
 
 module.exports = {
