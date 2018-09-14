@@ -27,24 +27,21 @@ const convertFile = (file) =>{
 
 const validate = (array) =>{
   const promise = new Promise((resolve, reject) => {
-    if(1+2==4) {
-      return reject('Esto no jala');
+    if(!array) {
+      return reject('Error en encontrar el arreglo');
     }
     else {
       return resolve (
         array.map((content) =>{ // Extrae la info del arreglo
-          for(const property in content){ // lee cada objeto
-            if(property === 'link'){ // Si la propiedad conincide con link se realiza el fetch
-              return fetch(content[property]).then((response) => {
-                  content['status'] = response.status; // Agrega al objeto status y el texto del status
-                  content['text status'] = response.statusText;
-                  return (content);
-              })
-              .catch((error) => {
-                  return error;
-              });
-            }
-          }
+          return fetch(content.link)
+          .then((response) => {
+            content['status'] = response.status; // Agrega al objeto status y el texto del status
+            content['text status'] = response.statusText;
+            return (content);
+          })
+          .catch((error) => {
+            return error;
+          });
         })
       );
     }
@@ -60,7 +57,7 @@ const validate = (array) =>{
     return response;
   })
   .catch((err) => {
-    console.error('ERROR: ' + err)
+    console.error(`ERROR: ${err}`);
   });
 }
 
@@ -96,7 +93,7 @@ const mdLinks = (file) => {
 
   const promise = new Promise((resolve, reject) => {
     if(!file) {
-      return reject('Esto no jala');
+      return reject(`No se reconoce el archivo ${file}`);
     }
     else {
       return resolve (validate(convertFile(file)));
@@ -109,7 +106,7 @@ const mdLinks = (file) => {
     return response;
   })
   .catch((err) => {
-    console.error('ERROR: ' + err)
+    console.error(`ERROR: ${err}`);
   });
 }
 
