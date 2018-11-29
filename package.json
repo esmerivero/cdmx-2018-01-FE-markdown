@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "bin": {
-    "md-links": "index.js"
+    "mdlinks": "index.js"
   },
   "bugs": {
     "url": "https://github.com/esmerivero/cdmx-2018-01-FE-markdown/issues"
