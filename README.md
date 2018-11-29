@@ -7,4 +7,4 @@ Herramienta para identificar links rotos en archivos con extension .md
 
 ----
 ## Desarrollado para
-[Laboratoria](https://www.laboratoria.la/)
+[Laboratoria](https://www.laboratoria.la)
